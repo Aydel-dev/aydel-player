@@ -30,329 +30,277 @@ const clockDate = document.getElementById("clockDate");
 
 let currentMedia = null;
 
-/* =========================================================
-OPEN MEDIA
-========================================================= */
 
-openButton.addEventListener("click", function () {
-fileInput.click();
+/* =========================
+   OPEN MEDIA
+========================= */
+
+openButton.addEventListener("click", () => {
+    fileInput.click();
 });
 
-/* =========================================================
-FILE SELECTION
-========================================================= */
 
-fileInput.addEventListener("change", function () {
+/* =========================
+   FILE SELECTION
+========================= */
 
-```
-const file = fileInput.files[0];
+fileInput.addEventListener("change", () => {
 
-if (!file) return;
+    const file = fileInput.files[0];
 
-const fileURL = URL.createObjectURL(file);
+    if (!file) {
+        return;
+    }
 
-trackName.textContent = file.name;
-sideTrackName.textContent = file.name;
+    const fileURL = URL.createObjectURL(file);
 
-infoStatus.textContent = "Loading";
+    trackName.textContent = file.name;
+    sideTrackName.textContent = file.name;
 
-
-/* -------------------------
-   VIDEO
-   ------------------------- */
-
-if (file.type.startsWith("video/")) {
-
-    currentMedia = videoPlayer;
-
-    audioPlayer.pause();
-
-    videoPlayer.src = fileURL;
-
-    videoPlayer.hidden = false;
-    albumArt.hidden = true;
-
-    trackType.textContent = "Video";
-    sideTrackType.textContent = "Video";
-
-    infoType.textContent = "Video";
-
-    videoPlayer.play();
-
-    playButton.textContent = "❚❚";
-
-    infoStatus.textContent = "Playing";
-}
+    infoStatus.textContent = "Loading";
 
 
-/* -------------------------
-   AUDIO
-   ------------------------- */
+    /* VIDEO */
 
-else if (file.type.startsWith("audio/")) {
+    if (file.type.startsWith("video/")) {
 
-    currentMedia = audioPlayer;
+        currentMedia = videoPlayer;
 
-    videoPlayer.pause();
+        audioPlayer.pause();
 
-    videoPlayer.hidden = true;
-    albumArt.hidden = false;
+        videoPlayer.src = fileURL;
+        videoPlayer.hidden = false;
 
-    audioPlayer.src = fileURL;
+        albumArt.hidden = true;
 
-    trackType.textContent = "Audio";
-    sideTrackType.textContent = "Audio";
+        trackType.textContent = "Video";
+        sideTrackType.textContent = "Video";
+        infoType.textContent = "Video";
 
-    infoType.textContent = "Audio";
+        videoPlayer.play()
+            .then(() => {
+                playButton.textContent = "❚❚";
+                infoStatus.textContent = "Playing";
+            })
+            .catch(() => {
+                playButton.textContent = "▶";
+                infoStatus.textContent = "Ready";
+            });
 
-    audioPlayer.play();
-
-    playButton.textContent = "❚❚";
-
-    infoStatus.textContent = "Playing";
-}
-```
-
-});
-
-/* =========================================================
-PLAY / PAUSE
-========================================================= */
-
-playButton.addEventListener("click", function () {
-
-```
-if (!currentMedia) return;
+    }
 
 
-if (currentMedia.paused) {
+    /* AUDIO */
 
-    currentMedia.play();
+    else if (file.type.startsWith("audio/")) {
 
-    playButton.textContent = "❚❚";
+        currentMedia = audioPlayer;
 
-    infoStatus.textContent = "Playing";
+        videoPlayer.pause();
 
-} else {
+        videoPlayer.hidden = true;
+        albumArt.hidden = false;
 
-    currentMedia.pause();
+        audioPlayer.src = fileURL;
 
-    playButton.textContent = "▶";
+        trackType.textContent = "Audio";
+        sideTrackType.textContent = "Audio";
+        infoType.textContent = "Audio";
 
-    infoStatus.textContent = "Paused";
-}
-```
+        audioPlayer.play()
+            .then(() => {
+                playButton.textContent = "❚❚";
+                infoStatus.textContent = "Playing";
+            })
+            .catch(() => {
+                playButton.textContent = "▶";
+                infoStatus.textContent = "Ready";
+            });
+
+    }
+
+    else {
+
+        infoStatus.textContent = "Unsupported file";
+    }
 
 });
 
-/* =========================================================
-PROGRESS
-========================================================= */
+
+/* =========================
+   PLAY / PAUSE
+========================= */
+
+playButton.addEventListener("click", () => {
+
+    if (!currentMedia) {
+        return;
+    }
+
+    if (currentMedia.paused) {
+
+        currentMedia.play();
+
+        playButton.textContent = "❚❚";
+        infoStatus.textContent = "Playing";
+
+    } else {
+
+        currentMedia.pause();
+
+        playButton.textContent = "▶";
+        infoStatus.textContent = "Paused";
+    }
+
+});
+
+
+/* =========================
+   PROGRESS
+========================= */
 
 function updateProgress() {
 
-```
-if (!currentMedia) return;
-
-if (!isNaN(currentMedia.duration)) {
-
-    progressBar.max = currentMedia.duration;
-
-    progressBar.value =
-        currentMedia.currentTime;
-
-    currentTime.textContent =
-        formatTime(currentMedia.currentTime);
-
-    duration.textContent =
-        formatTime(currentMedia.duration);
-}
-```
-
-}
-
-audioPlayer.addEventListener(
-"timeupdate",
-updateProgress
-);
-
-videoPlayer.addEventListener(
-"timeupdate",
-updateProgress
-);
-
-/* =========================================================
-SEEK
-========================================================= */
-
-progressBar.addEventListener(
-"input",
-function () {
-
-```
-    if (currentMedia) {
-
-        currentMedia.currentTime =
-            progressBar.value;
+    if (!currentMedia) {
+        return;
     }
-
-}
-```
-
-);
-
-/* =========================================================
-VOLUME
-========================================================= */
-
-volumeBar.addEventListener(
-"input",
-function () {
-
-```
-    audioPlayer.volume =
-        volumeBar.value;
-
-    videoPlayer.volume =
-        volumeBar.value;
-
-}
-```
-
-);
-
-/* =========================================================
-PREVIOUS
-========================================================= */
-
-previousButton.addEventListener(
-"click",
-function () {
-
-```
-    if (!currentMedia) return;
-
-    currentMedia.currentTime = 0;
-
-}
-```
-
-);
-
-/* =========================================================
-NEXT
-========================================================= */
-
-nextButton.addEventListener(
-"click",
-function () {
-
-```
-    if (!currentMedia) return;
 
     if (!isNaN(currentMedia.duration)) {
 
-        currentMedia.currentTime =
-            currentMedia.duration;
+        progressBar.max = currentMedia.duration;
+        progressBar.value = currentMedia.currentTime;
+
+        currentTime.textContent =
+            formatTime(currentMedia.currentTime);
+
+        duration.textContent =
+            formatTime(currentMedia.duration);
+    }
+}
+
+audioPlayer.addEventListener("timeupdate", updateProgress);
+videoPlayer.addEventListener("timeupdate", updateProgress);
+
+
+/* =========================
+   SEEK
+========================= */
+
+progressBar.addEventListener("input", () => {
+
+    if (currentMedia) {
+        currentMedia.currentTime = progressBar.value;
     }
 
-}
-```
+});
 
-);
 
-/* =========================================================
-MEDIA ENDED
-========================================================= */
+/* =========================
+   VOLUME
+========================= */
 
-audioPlayer.addEventListener(
-"ended",
-function () {
+volumeBar.addEventListener("input", () => {
 
-```
+    audioPlayer.volume = volumeBar.value;
+    videoPlayer.volume = volumeBar.value;
+
+});
+
+
+/* =========================
+   PREVIOUS
+========================= */
+
+previousButton.addEventListener("click", () => {
+
+    if (!currentMedia) {
+        return;
+    }
+
+    currentMedia.currentTime = 0;
+
+});
+
+
+/* =========================
+   NEXT
+========================= */
+
+nextButton.addEventListener("click", () => {
+
+    if (!currentMedia) {
+        return;
+    }
+
+    if (!isNaN(currentMedia.duration)) {
+        currentMedia.currentTime = currentMedia.duration;
+    }
+
+});
+
+
+/* =========================
+   MEDIA ENDED
+========================= */
+
+audioPlayer.addEventListener("ended", () => {
+
     playButton.textContent = "▶";
-
     infoStatus.textContent = "Finished";
 
-}
-```
+});
 
-);
+videoPlayer.addEventListener("ended", () => {
 
-videoPlayer.addEventListener(
-"ended",
-function () {
-
-```
     playButton.textContent = "▶";
-
     infoStatus.textContent = "Finished";
 
-}
-```
+});
 
-);
 
-/* =========================================================
-CLOCK
-========================================================= */
+/* =========================
+   CLOCK
+========================= */
 
 function updateClock() {
 
-```
-const now = new Date();
+    const now = new Date();
 
-const time = now.toLocaleTimeString(
-    [],
-    {
+    const time = now.toLocaleTimeString([], {
         hour: "2-digit",
         minute: "2-digit"
-    }
-);
+    });
 
-const date = now.toLocaleDateString(
-    [],
-    {
+    const date = now.toLocaleDateString([], {
         weekday: "long",
         day: "numeric",
         month: "short"
-    }
-);
+    });
 
-clockTime.textContent = time;
-
-clockDate.textContent = date;
-```
-
+    clockTime.textContent = time;
+    clockDate.textContent = date;
 }
 
 updateClock();
 
-setInterval(
-updateClock,
-1000
-);
+setInterval(updateClock, 1000);
 
-/* =========================================================
-TIME FORMAT
-========================================================= */
+
+/* =========================
+   TIME FORMAT
+========================= */
 
 function formatTime(seconds) {
 
-```
-if (isNaN(seconds)) {
-    return "0:00";
-}
+    if (isNaN(seconds)) {
+        return "0:00";
+    }
 
-const minutes =
-    Math.floor(seconds / 60);
+    const minutes = Math.floor(seconds / 60);
 
-const secondsPart =
-    Math.floor(seconds % 60)
+    const secondsPart = Math.floor(seconds % 60)
         .toString()
         .padStart(2, "0");
 
-return minutes + ":" + secondsPart;
-```
-
+    return minutes + ":" + secondsPart;
 }
