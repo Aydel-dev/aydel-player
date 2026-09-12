@@ -6,18 +6,16 @@
 
 :root {
 --bg: #070914;
---glass: rgba(20, 24, 42, 0.62);
---glass-light: rgba(255, 255, 255, 0.07);
---glass-dark: rgba(5, 7, 15, 0.45);
+--glass: rgba(20, 24, 42, 0.68);
+--glass-light: rgba(255, 255, 255, 0.08);
+--line: rgba(255, 255, 255, 0.14);
 
 ```
---line: rgba(255, 255, 255, 0.11);
-
---text: #f5f7ff;
---muted: #9298ad;
+--text: #ffffff;
+--muted: #c1c5d5;
 
 --accent: #7c6cff;
---accent-light: #a89cff;
+--accent-light: #aaa0ff;
 
 --shadow: rgba(0, 0, 0, 0.55);
 ```
@@ -47,17 +45,17 @@ font-family:
 background:
     radial-gradient(
         circle at 20% 20%,
-        rgba(91, 73, 190, 0.28),
+        rgba(91, 73, 190, 0.3),
         transparent 32%
     ),
     radial-gradient(
         circle at 85% 15%,
-        rgba(46, 87, 180, 0.22),
+        rgba(46, 87, 180, 0.24),
         transparent 30%
     ),
     radial-gradient(
         circle at 50% 100%,
-        rgba(99, 50, 180, 0.18),
+        rgba(99, 50, 180, 0.2),
         transparent 35%
     ),
     var(--bg);
@@ -65,9 +63,9 @@ background:
 
 }
 
-/* =========================================================
+/* =========================
 BACKGROUND
-========================================================= */
+========================= */
 
 .background-glow {
 position: fixed;
@@ -80,7 +78,7 @@ background:
     linear-gradient(
         120deg,
         transparent 20%,
-        rgba(124, 108, 255, 0.035),
+        rgba(124, 108, 255, 0.04),
         transparent 70%
     );
 
@@ -89,9 +87,9 @@ z-index: -1;
 
 }
 
-/* =========================================================
-LEFT APP RAIL
-========================================================= */
+/* =========================
+LEFT RAIL
+========================= */
 
 .app-rail {
 position: fixed;
@@ -102,7 +100,7 @@ top: 50%;
 
 transform: translateY(-50%);
 
-width: 58px;
+width: 60px;
 
 padding: 10px;
 
@@ -114,14 +112,14 @@ gap: 9px;
 border: 1px solid var(--line);
 border-radius: 22px;
 
-background: rgba(14, 17, 31, 0.62);
+background: rgba(14, 17, 31, 0.75);
 
 backdrop-filter: blur(25px);
 -webkit-backdrop-filter: blur(25px);
 
 box-shadow:
     0 25px 70px var(--shadow),
-    inset 0 1px rgba(255, 255, 255, 0.04);
+    inset 0 1px rgba(255, 255, 255, 0.05);
 
 z-index: 20;
 ```
@@ -129,8 +127,8 @@ z-index: 20;
 }
 
 .rail-logo {
-width: 38px;
-height: 38px;
+width: 40px;
+height: 40px;
 
 ```
 display: flex;
@@ -139,8 +137,7 @@ justify-content: center;
 
 border-radius: 13px;
 
-font-size: 18px;
-font-weight: 800;
+color: #ffffff !important;
 
 background:
     linear-gradient(
@@ -148,6 +145,9 @@ background:
         var(--accent-light),
         var(--accent)
     );
+
+font-size: 18px;
+font-weight: 800;
 
 box-shadow:
     0 10px 30px rgba(124, 108, 255, 0.35);
@@ -158,8 +158,8 @@ margin-bottom: 6px;
 }
 
 .rail-button {
-width: 38px;
-height: 38px;
+width: 40px;
+height: 40px;
 
 ```
 border: 0;
@@ -167,9 +167,9 @@ border-radius: 12px;
 
 background: transparent;
 
-color: var(--muted);
+color: #c8ccda !important;
 
-font-size: 16px;
+font-size: 17px;
 
 cursor: pointer;
 
@@ -181,20 +181,14 @@ transition:
 
 }
 
-.rail-button:hover {
-color: white;
-background: var(--glass-light);
-transform: translateY(-2px);
-}
-
+.rail-button:hover,
 .rail-button.active {
-color: white;
+color: #ffffff !important;
 
 ```
-background: rgba(124, 108, 255, 0.18);
+background: rgba(124, 108, 255, 0.2);
 
-box-shadow:
-    inset 0 0 0 1px rgba(124, 108, 255, 0.18);
+transform: translateY(-2px);
 ```
 
 }
@@ -203,9 +197,9 @@ box-shadow:
 height: 30px;
 }
 
-/* =========================================================
+/* =========================
 CLOCK
-========================================================= */
+========================= */
 
 .clock {
 position: fixed;
@@ -214,32 +208,47 @@ position: fixed;
 top: 28px;
 left: 105px;
 
-z-index: 10;
+z-index: 50;
+
+color: #ffffff !important;
+
+opacity: 1 !important;
+visibility: visible !important;
 ```
 
 }
 
 #clockTime {
-font-size: 25px;
-font-weight: 600;
+color: #ffffff !important;
+
+```
+font-size: 28px !important;
+font-weight: 700 !important;
+
+line-height: 1.1;
+
 letter-spacing: -0.5px;
+```
+
 }
 
 #clockDate {
-margin-top: 3px;
+margin-top: 5px;
 
 ```
-color: var(--muted);
+color: #c5c9da !important;
 
-font-size: 11px;
-letter-spacing: 0.5px;
+font-size: 13px !important;
+font-weight: 500;
+
+line-height: 1.2;
 ```
 
 }
 
-/* =========================================================
+/* =========================
 MAIN WINDOW
-========================================================= */
+========================= */
 
 .window {
 width: min(1180px, calc(100vw - 170px));
@@ -251,13 +260,17 @@ margin: 90px auto 110px;
 
 padding: 26px;
 
+position: relative;
+
+color: #ffffff !important;
+
 border: 1px solid var(--line);
 border-radius: 30px;
 
 background:
     linear-gradient(
         135deg,
-        rgba(255, 255, 255, 0.075),
+        rgba(255, 255, 255, 0.08),
         rgba(255, 255, 255, 0.025)
     ),
     var(--glass);
@@ -267,16 +280,30 @@ backdrop-filter: blur(35px) saturate(135%);
 
 box-shadow:
     0 40px 120px rgba(0, 0, 0, 0.55),
-    inset 0 1px rgba(255, 255, 255, 0.05);
-
-position: relative;
+    inset 0 1px rgba(255, 255, 255, 0.06);
 ```
 
 }
 
-/* =========================================================
+/* =========================
+FORCE TEXT VISIBILITY
+========================= */
+
+.window h1,
+.window h2,
+.window h3,
+.window p,
+.window span,
+.window strong,
+.window button,
+.dock,
+.dock button {
+color: #ffffff;
+}
+
+/* =========================
 HEADER
-========================================================= */
+========================= */
 
 .window-header {
 display: flex;
@@ -306,6 +333,8 @@ justify-content: center;
 
 border-radius: 14px;
 
+color: #ffffff !important;
+
 background:
     linear-gradient(
         145deg,
@@ -323,17 +352,22 @@ box-shadow:
 }
 
 .brand h1 {
-font-size: 17px;
+color: #ffffff !important;
+
+```
+font-size: 20px;
 font-weight: 700;
+```
+
 }
 
 .brand p {
-margin-top: 3px;
+margin-top: 4px;
 
 ```
-color: var(--muted);
+color: #bfc4d5 !important;
 
-font-size: 12px;
+font-size: 13px;
 ```
 
 }
@@ -344,24 +378,25 @@ align-items: center;
 gap: 8px;
 
 ```
-padding: 8px 12px;
+padding: 9px 13px;
 
 border: 1px solid var(--line);
 border-radius: 999px;
 
-color: var(--muted);
+color: #dfe2ee !important;
 
-background: rgba(0, 0, 0, 0.14);
+background: rgba(0, 0, 0, 0.2);
 
-font-size: 10px;
+font-size: 11px;
+font-weight: 600;
 letter-spacing: 1px;
 ```
 
 }
 
 .status-dot {
-width: 6px;
-height: 6px;
+width: 7px;
+height: 7px;
 
 ```
 border-radius: 50%;
@@ -374,9 +409,9 @@ box-shadow:
 
 }
 
-/* =========================================================
-CONTENT GRID
-========================================================= */
+/* =========================
+CONTENT
+========================= */
 
 .content {
 display: grid;
@@ -391,9 +426,9 @@ gap: 18px;
 
 }
 
-/* =========================================================
-HERO CARD
-========================================================= */
+/* =========================
+HERO
+========================= */
 
 .hero-card {
 min-height: 620px;
@@ -409,12 +444,9 @@ border-radius: 24px;
 background:
     linear-gradient(
         145deg,
-        rgba(28, 31, 55, 0.8),
-        rgba(9, 11, 22, 0.8)
+        rgba(28, 31, 55, 0.85),
+        rgba(9, 11, 22, 0.85)
     );
-
-box-shadow:
-    inset 0 1px rgba(255, 255, 255, 0.04);
 ```
 
 }
@@ -435,10 +467,6 @@ background:
         rgba(58, 80, 190, 0.16),
         transparent 30%
     );
-
-filter: blur(3px);
-
-pointer-events: none;
 ```
 
 }
@@ -451,11 +479,9 @@ inset: 0;
 background:
     linear-gradient(
         to bottom,
-        rgba(8, 10, 20, 0.05),
-        rgba(5, 7, 14, 0.78)
+        rgba(8, 10, 20, 0.02),
+        rgba(5, 7, 14, 0.8)
     );
-
-pointer-events: none;
 ```
 
 }
@@ -464,8 +490,6 @@ pointer-events: none;
 position: relative;
 
 ```
-height: 100%;
-
 min-height: 620px;
 
 padding: 35px;
@@ -478,9 +502,9 @@ justify-content: center;
 
 }
 
-/* =========================================================
+/* =========================
 MEDIA
-========================================================= */
+========================= */
 
 .media-container {
 width: min(390px, 72%);
@@ -494,7 +518,7 @@ overflow: hidden;
 
 position: relative;
 
-border: 1px solid rgba(255, 255, 255, 0.13);
+border: 1px solid rgba(255, 255, 255, 0.14);
 
 background:
     linear-gradient(
@@ -553,9 +577,9 @@ filter: blur(55px);
 position: relative;
 
 ```
-font-size: 105px;
+color: #ffffff !important;
 
-color: rgba(255, 255, 255, 0.9);
+font-size: 105px;
 
 text-shadow:
     0 15px 45px rgba(0, 0, 0, 0.45);
@@ -575,9 +599,9 @@ background: black;
 
 }
 
-/* =========================================================
+/* =========================
 TRACK INFO
-========================================================= */
+========================= */
 
 .track-info {
 width: 100%;
@@ -591,12 +615,12 @@ text-align: center;
 }
 
 .eyebrow {
-margin-bottom: 7px;
+margin-bottom: 8px;
 
 ```
-color: var(--accent-light);
+color: #b4aaff !important;
 
-font-size: 9px;
+font-size: 10px;
 font-weight: 700;
 
 letter-spacing: 2px;
@@ -610,31 +634,33 @@ max-width: 650px;
 ```
 margin: auto;
 
+color: #ffffff !important;
+
 overflow: hidden;
 
 text-overflow: ellipsis;
 
 white-space: nowrap;
 
-font-size: 22px;
+font-size: 25px;
 ```
 
 }
 
 .track-info p {
-margin-top: 6px;
+margin-top: 7px;
 
 ```
-color: var(--muted);
+color: #c2c6d6 !important;
 
-font-size: 13px;
+font-size: 15px;
 ```
 
 }
 
-/* =========================================================
+/* =========================
 OPEN BUTTON
-========================================================= */
+========================= */
 
 .main-actions {
 margin-top: 18px;
@@ -646,22 +672,22 @@ align-items: center;
 gap: 8px;
 
 ```
-padding: 11px 17px;
+padding: 12px 18px;
 
-border: 1px solid rgba(255, 255, 255, 0.12);
+border: 1px solid rgba(255, 255, 255, 0.14);
 
 border-radius: 13px;
 
 background:
     linear-gradient(
         145deg,
-        rgba(132, 119, 255, 0.9),
-        rgba(91, 75, 206, 0.9)
+        rgba(132, 119, 255, 0.95),
+        rgba(91, 75, 206, 0.95)
     );
 
-color: white;
+color: #ffffff !important;
 
-font-size: 13px;
+font-size: 14px;
 font-weight: 600;
 
 cursor: pointer;
@@ -686,9 +712,9 @@ box-shadow:
 
 }
 
-/* =========================================================
+/* =========================
 SIDE PANEL
-========================================================= */
+========================= */
 
 .side-panel {
 display: flex;
@@ -700,9 +726,9 @@ gap: 18px;
 
 }
 
-/* =========================================================
-GLASS CARDS
-========================================================= */
+/* =========================
+CARDS
+========================= */
 
 .card {
 padding: 20px;
@@ -712,13 +738,13 @@ border: 1px solid var(--line);
 border-radius: 20px;
 
 background:
-    rgba(10, 13, 25, 0.45);
+    rgba(10, 13, 25, 0.5);
 
 backdrop-filter: blur(18px);
 -webkit-backdrop-filter: blur(18px);
 
 box-shadow:
-    inset 0 1px rgba(255, 255, 255, 0.035);
+    inset 0 1px rgba(255, 255, 255, 0.04);
 
 transition:
     transform 0.2s ease,
@@ -732,7 +758,7 @@ transform: translateY(-2px);
 
 ```
 border-color:
-    rgba(255, 255, 255, 0.17);
+    rgba(255, 255, 255, 0.19);
 ```
 
 }
@@ -745,9 +771,9 @@ justify-content: space-between;
 ```
 margin-bottom: 18px;
 
-color: var(--muted);
+color: #c9cddd !important;
 
-font-size: 9px;
+font-size: 11px;
 font-weight: 700;
 
 letter-spacing: 1.8px;
@@ -756,8 +782,8 @@ letter-spacing: 1.8px;
 }
 
 .card-dot {
-width: 5px;
-height: 5px;
+width: 6px;
+height: 6px;
 
 ```
 border-radius: 50%;
@@ -770,9 +796,9 @@ box-shadow:
 
 }
 
-/* =========================================================
+/* =========================
 MINI TRACK
-========================================================= */
+========================= */
 
 .mini-track {
 display: flex;
@@ -807,10 +833,9 @@ background:
         #0b0d17
     );
 
-font-size: 20px;
+color: #ffffff !important;
 
-box-shadow:
-    0 10px 25px rgba(0, 0, 0, 0.25);
+font-size: 20px;
 ```
 
 }
@@ -835,23 +860,25 @@ text-overflow: ellipsis;
 
 white-space: nowrap;
 
-font-size: 13px;
+color: #ffffff !important;
+
+font-size: 14px;
 ```
 
 }
 
 .mini-info span {
-color: var(--muted);
+color: #bfc4d5 !important;
 
 ```
-font-size: 11px;
+font-size: 12px;
 ```
 
 }
 
-/* =========================================================
+/* =========================
 PROGRESS
-========================================================= */
+========================= */
 
 .progress-section {
 display: flex;
@@ -864,12 +891,12 @@ gap: 9px;
 }
 
 .progress-section span {
-width: 34px;
+width: 38px;
 
 ```
-color: var(--muted);
+color: #bfc4d5 !important;
 
-font-size: 10px;
+font-size: 11px;
 ```
 
 }
@@ -878,21 +905,21 @@ font-size: 10px;
 text-align: right;
 }
 
-/* =========================================================
-RANGE INPUTS
-========================================================= */
+/* =========================
+RANGE
+========================= */
 
 input[type="range"] {
 appearance: none;
 
 ```
 width: 100%;
-height: 4px;
+height: 5px;
 
 border-radius: 10px;
 
 background:
-    rgba(255, 255, 255, 0.12);
+    rgba(255, 255, 255, 0.15);
 
 cursor: pointer;
 ```
@@ -903,8 +930,8 @@ input[type="range"]::-webkit-slider-thumb {
 appearance: none;
 
 ```
-width: 12px;
-height: 12px;
+width: 13px;
+height: 13px;
 
 border-radius: 50%;
 
@@ -916,9 +943,9 @@ box-shadow:
 
 }
 
-/* =========================================================
+/* =========================
 CONTROLS
-========================================================= */
+========================= */
 
 .controls {
 display: flex;
@@ -944,6 +971,8 @@ justify-content: center;
 
 cursor: pointer;
 
+color: #ffffff !important;
+
 transition:
     transform 0.18s ease,
     background 0.18s ease;
@@ -952,18 +981,16 @@ transition:
 }
 
 .control-button {
-width: 37px;
-height: 37px;
+width: 39px;
+height: 39px;
 
 ```
 border-radius: 50%;
 
 background:
-    rgba(255, 255, 255, 0.06);
+    rgba(255, 255, 255, 0.08);
 
-color: white;
-
-font-size: 13px;
+font-size: 14px;
 ```
 
 }
@@ -973,14 +1000,14 @@ transform: scale(1.08);
 
 ```
 background:
-    rgba(255, 255, 255, 0.11);
+    rgba(255, 255, 255, 0.14);
 ```
 
 }
 
 .play-button {
-width: 48px;
-height: 48px;
+width: 50px;
+height: 50px;
 
 ```
 border-radius: 50%;
@@ -992,9 +1019,7 @@ background:
         #6757e3
     );
 
-color: white;
-
-font-size: 17px;
+font-size: 18px;
 
 box-shadow:
     0 12px 30px rgba(100, 84, 226, 0.35);
@@ -1006,9 +1031,9 @@ box-shadow:
 transform: scale(1.08);
 }
 
-/* =========================================================
+/* =========================
 VOLUME
-========================================================= */
+========================= */
 
 .volume-section {
 display: flex;
@@ -1019,16 +1044,16 @@ gap: 9px;
 
 margin-top: 20px;
 
-color: var(--muted);
+color: #c0c5d6 !important;
 
-font-size: 12px;
+font-size: 13px;
 ```
 
 }
 
-/* =========================================================
+/* =========================
 MEDIA INFO
-========================================================= */
+========================= */
 
 .info-row {
 display: flex;
@@ -1038,9 +1063,9 @@ justify-content: space-between;
 ```
 padding: 10px 0;
 
-border-bottom: 1px solid rgba(255, 255, 255, 0.055);
+border-bottom: 1px solid rgba(255, 255, 255, 0.07);
 
-font-size: 11px;
+font-size: 13px;
 ```
 
 }
@@ -1050,16 +1075,21 @@ border-bottom: 0;
 }
 
 .info-row span {
-color: var(--muted);
+color: #aeb4c8 !important;
 }
 
 .info-row strong {
+color: #ffffff !important;
+
+```
 font-weight: 500;
+```
+
 }
 
-/* =========================================================
+/* =========================
 LIBRARY
-========================================================= */
+========================= */
 
 .library-empty {
 display: flex;
@@ -1083,9 +1113,9 @@ justify-content: center;
 border-radius: 13px;
 
 background:
-    rgba(124, 108, 255, 0.13);
+    rgba(124, 108, 255, 0.15);
 
-color: var(--accent-light);
+color: #b9b0ff !important;
 ```
 
 }
@@ -1094,7 +1124,9 @@ color: var(--accent-light);
 display: block;
 
 ```
-font-size: 12px;
+color: #ffffff !important;
+
+font-size: 14px;
 ```
 
 }
@@ -1103,16 +1135,16 @@ font-size: 12px;
 margin-top: 4px;
 
 ```
-color: var(--muted);
+color: #b9bfd0 !important;
 
-font-size: 10px;
+font-size: 12px;
 ```
 
 }
 
-/* =========================================================
-BOTTOM DOCK
-========================================================= */
+/* =========================
+DOCK
+========================= */
 
 .dock {
 position: fixed;
@@ -1134,7 +1166,7 @@ border: 1px solid var(--line);
 border-radius: 19px;
 
 background:
-    rgba(12, 15, 28, 0.68);
+    rgba(12, 15, 28, 0.78);
 
 backdrop-filter: blur(25px);
 -webkit-backdrop-filter: blur(25px);
@@ -1151,7 +1183,7 @@ z-index: 30;
 min-width: 76px;
 
 ```
-padding: 9px 13px;
+padding: 10px 13px;
 
 display: flex;
 align-items: center;
@@ -1164,9 +1196,9 @@ border-radius: 13px;
 
 background: transparent;
 
-color: var(--muted);
+color: #c1c6d8 !important;
 
-font-size: 11px;
+font-size: 12px;
 
 cursor: pointer;
 
@@ -1177,29 +1209,20 @@ transition:
 
 }
 
-.dock-button:hover {
-color: white;
-
-```
-background:
-    rgba(255, 255, 255, 0.06);
-```
-
-}
-
+.dock-button:hover,
 .dock-button.active {
-color: white;
+color: #ffffff !important;
 
 ```
 background:
-    rgba(124, 108, 255, 0.17);
+    rgba(124, 108, 255, 0.2);
 ```
 
 }
 
-/* =========================================================
+/* =========================
 RESPONSIVE
-========================================================= */
+========================= */
 
 @media (max-width: 1000px) {
 
@@ -1249,15 +1272,13 @@ RESPONSIVE
 
     width: fit-content;
 
-    margin:
-        20px 20px 0;
+    margin: 20px 20px 0;
 }
 
 .window {
     width: calc(100% - 24px);
 
-    margin:
-        25px auto 100px;
+    margin: 25px auto 100px;
 
     padding: 16px;
 
@@ -1292,10 +1313,6 @@ RESPONSIVE
 
 .side-panel {
     display: flex;
-}
-
-.library-card {
-    grid-column: auto;
 }
 
 .dock {
