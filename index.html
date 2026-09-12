@@ -1,0 +1,136 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Aydel Player</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="player">
+
+        <!-- Top bar -->
+        <header class="top-bar">
+            <div class="brand">
+                <div class="brand-icon">A</div>
+
+                <div>
+                    <h1>Aydel Player</h1>
+                    <p>Media Player</p>
+                </div>
+            </div>
+
+            <button class="open-button" id="openButton">
+                + Open Media
+            </button>
+
+            <input
+                type="file"
+                id="fileInput"
+                accept="audio/*,video/*"
+                hidden
+            >
+        </header>
+
+
+        <!-- Media area -->
+        <section class="media-area">
+
+            <div class="media-container">
+
+                <video
+                    id="videoPlayer"
+                    controls
+                    hidden
+                ></video>
+
+                <div class="album-art" id="albumArt">
+                    <div class="music-symbol">♫</div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Track information -->
+        <section class="track-info">
+
+            <h2 id="trackName">No media selected</h2>
+
+            <p id="trackType">
+                Open an audio or video file to begin
+            </p>
+
+        </section>
+
+
+        <!-- Progress -->
+        <section class="progress-section">
+
+            <span id="currentTime">0:00</span>
+
+            <input
+                type="range"
+                id="progressBar"
+                min="0"
+                max="100"
+                value="0"
+            >
+
+            <span id="duration">0:00</span>
+
+        </section>
+
+
+        <!-- Controls -->
+        <section class="controls">
+
+            <button id="previousButton" class="control-button">
+                ⏮
+            </button>
+
+            <button id="playButton" class="play-button">
+                ▶
+            </button>
+
+            <button id="nextButton" class="control-button">
+                ⏭
+            </button>
+
+        </section>
+
+
+        <!-- Volume -->
+        <section class="volume-section">
+
+            <span>🔊</span>
+
+            <input
+                type="range"
+                id="volumeBar"
+                min="0"
+                max="1"
+                step="0.01"
+                value="1"
+            >
+
+        </section>
+
+
+        <!-- Hidden audio player -->
+        <audio id="audioPlayer"></audio>
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
+```
