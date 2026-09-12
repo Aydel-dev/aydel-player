@@ -1,136 +1,315 @@
-```html
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Aydel Player</title>
+```
+<title>Aydel Player</title>
 
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
+```
+
 </head>
 
 <body>
 
-    <main class="player">
+```
+<!-- Atmospheric background -->
+<div class="background-glow"></div>
 
-        <!-- Top bar -->
-        <header class="top-bar">
-            <div class="brand">
-                <div class="brand-icon">A</div>
+<!-- Left floating app rail -->
+<aside class="app-rail">
+    <div class="rail-logo">A</div>
 
-                <div>
-                    <h1>Aydel Player</h1>
-                    <p>Media Player</p>
+    <button class="rail-button active" title="Player">♫</button>
+    <button class="rail-button" title="Library">▣</button>
+    <button class="rail-button" title="Files">⌁</button>
+
+    <div class="rail-spacer"></div>
+
+    <button class="rail-button" title="Settings">⚙</button>
+</aside>
+
+
+<!-- Floating clock -->
+<div class="clock">
+    <div id="clockTime">00:00</div>
+    <div id="clockDate">Loading date...</div>
+</div>
+
+
+<!-- Main glass application -->
+<main class="window">
+
+    <!-- Header -->
+    <header class="window-header">
+
+        <div class="brand">
+            <div class="brand-icon">A</div>
+
+            <div>
+                <h1>Aydel Player</h1>
+                <p>Personal Media Center</p>
+            </div>
+        </div>
+
+        <div class="status-pill">
+            <span class="status-dot"></span>
+            LOCAL PLAYER
+        </div>
+
+    </header>
+
+
+    <!-- Main content -->
+    <section class="content">
+
+        <!-- Main media card -->
+        <section class="hero-card">
+
+            <div class="hero-background"></div>
+
+            <div class="hero-overlay"></div>
+
+            <div class="hero-content">
+
+                <div class="media-container">
+
+                    <video
+                        id="videoPlayer"
+                        controls
+                        hidden>
+                    </video>
+
+                    <div class="album-art" id="albumArt">
+                        <div class="album-glow"></div>
+                        <div class="music-symbol">♫</div>
+                    </div>
+
                 </div>
+
+
+                <div class="track-info">
+
+                    <div class="eyebrow">
+                        NOW PLAYING
+                    </div>
+
+                    <h2 id="trackName">
+                        No media selected
+                    </h2>
+
+                    <p id="trackType">
+                        Open an audio or video file to begin
+                    </p>
+
+                </div>
+
+
+                <div class="main-actions">
+
+                    <button
+                        class="primary-button"
+                        id="openButton">
+                        <span>＋</span>
+                        Open Media
+                    </button>
+
+                </div>
+
             </div>
 
-            <button class="open-button" id="openButton">
-                + Open Media
-            </button>
-
-            <input
-                type="file"
-                id="fileInput"
-                accept="audio/*,video/*"
-                hidden
-            >
-        </header>
+        </section>
 
 
-        <!-- Media area -->
-        <section class="media-area">
+        <!-- Right side cards -->
+        <aside class="side-panel">
 
-            <div class="media-container">
 
-                <video
-                    id="videoPlayer"
-                    controls
-                    hidden
-                ></video>
+            <!-- Now Playing -->
+            <div class="card player-card">
 
-                <div class="album-art" id="albumArt">
-                    <div class="music-symbol">♫</div>
+                <div class="card-heading">
+                    <span>PLAYER</span>
+                    <span class="card-dot"></span>
+                </div>
+
+
+                <div class="mini-track">
+
+                    <div class="mini-art">
+                        ♫
+                    </div>
+
+                    <div class="mini-info">
+                        <strong id="sideTrackName">
+                            No media
+                        </strong>
+
+                        <span id="sideTrackType">
+                            Waiting for media
+                        </span>
+                    </div>
+
+                </div>
+
+
+                <!-- Progress -->
+                <div class="progress-section">
+
+                    <span id="currentTime">
+                        0:00
+                    </span>
+
+                    <input
+                        type="range"
+                        id="progressBar"
+                        min="0"
+                        max="100"
+                        value="0">
+
+                    <span id="duration">
+                        0:00
+                    </span>
+
+                </div>
+
+
+                <!-- Controls -->
+                <div class="controls">
+
+                    <button
+                        id="previousButton"
+                        class="control-button">
+                        ⏮
+                    </button>
+
+                    <button
+                        id="playButton"
+                        class="play-button">
+                        ▶
+                    </button>
+
+                    <button
+                        id="nextButton"
+                        class="control-button">
+                        ⏭
+                    </button>
+
+                </div>
+
+
+                <!-- Volume -->
+                <div class="volume-section">
+
+                    <span>🔊</span>
+
+                    <input
+                        type="range"
+                        id="volumeBar"
+                        min="0"
+                        max="1"
+                        step="0.01"
+                        value="1">
+
                 </div>
 
             </div>
 
-        </section>
+
+            <!-- Media information -->
+            <div class="card info-card">
+
+                <div class="card-heading">
+                    <span>MEDIA INFO</span>
+                </div>
+
+                <div class="info-row">
+                    <span>Type</span>
+                    <strong id="infoType">—</strong>
+                </div>
+
+                <div class="info-row">
+                    <span>Status</span>
+                    <strong id="infoStatus">Ready</strong>
+                </div>
+
+                <div class="info-row">
+                    <span>Source</span>
+                    <strong>Local</strong>
+                </div>
+
+            </div>
 
 
-        <!-- Track information -->
-        <section class="track-info">
+            <!-- Library card -->
+            <div class="card library-card">
 
-            <h2 id="trackName">No media selected</h2>
+                <div class="card-heading">
+                    <span>LIBRARY</span>
+                </div>
 
-            <p id="trackType">
-                Open an audio or video file to begin
-            </p>
+                <div class="library-empty">
 
-        </section>
+                    <div class="library-icon">
+                        ♫
+                    </div>
 
+                    <div>
+                        <strong>Your media</strong>
+                        <p>
+                            Open a local audio or video file
+                        </p>
+                    </div>
 
-        <!-- Progress -->
-        <section class="progress-section">
+                </div>
 
-            <span id="currentTime">0:00</span>
+            </div>
 
-            <input
-                type="range"
-                id="progressBar"
-                min="0"
-                max="100"
-                value="0"
-            >
+        </aside>
 
-            <span id="duration">0:00</span>
+    </section>
 
-        </section>
-
-
-        <!-- Controls -->
-        <section class="controls">
-
-            <button id="previousButton" class="control-button">
-                ⏮
-            </button>
-
-            <button id="playButton" class="play-button">
-                ▶
-            </button>
-
-            <button id="nextButton" class="control-button">
-                ⏭
-            </button>
-
-        </section>
+</main>
 
 
-        <!-- Volume -->
-        <section class="volume-section">
+<!-- Bottom dock -->
+<nav class="dock">
 
-            <span>🔊</span>
+    <button class="dock-button active">
+        ♫
+        <span>Player</span>
+    </button>
 
-            <input
-                type="range"
-                id="volumeBar"
-                min="0"
-                max="1"
-                step="0.01"
-                value="1"
-            >
+    <button class="dock-button">
+        ▣
+        <span>Library</span>
+    </button>
 
-        </section>
+    <button class="dock-button">
+        ⚙
+        <span>Settings</span>
+    </button>
 
-
-        <!-- Hidden audio player -->
-        <audio id="audioPlayer"></audio>
-
-    </main>
+</nav>
 
 
-    <script src="script.js"></script>
+<!-- Hidden audio player -->
+<audio id="audioPlayer"></audio>
+
+
+<!-- File input -->
+<input
+    type="file"
+    id="fileInput"
+    accept="audio/*,video/*"
+    hidden>
+
+
+<script src="script.js"></script>
+```
 
 </body>
 </html>
-```
